@@ -16,6 +16,16 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  created(){
+    var url = this.HOST + "/movie/top250"
+    this.$axios.get(url)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 }
 </script>
