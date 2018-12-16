@@ -18,8 +18,7 @@ export default {
     }
   },
   created(){
-    var url = this.HOST + "/movie/top250"
-    this.$axios.get(url)
+    this.$axios.get('/goods')
     .then(res => {
       console.log(res.data);
     })

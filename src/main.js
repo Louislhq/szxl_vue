@@ -15,7 +15,9 @@ Vue.use(ElementUI);
 //引入axios
 import Axios from 'axios'
 Vue.prototype.$axios = Axios
-Vue.prototype.HOST = '/api'
+
+import Mock from '../mock'
+Mock.init()
 
 
 
