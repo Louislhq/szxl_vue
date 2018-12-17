@@ -16,10 +16,10 @@ Vue.use(ElementUI);
 import Axios from 'axios'
 Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 Vue.prototype.$axios = Axios
-// Vue.prototype.HOST = '/api'
 
-import mockdata from '../mock/mock'
-mockdata.init()
+import Mock from '../mock'
+Mock.init()
+
 
 Vue.config.productionTip = false
 
