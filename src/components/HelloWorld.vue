@@ -18,7 +18,7 @@ export default {
     }
   },
   created(){
-    this.$axios.get('/goods')
+    this.$axios.get('/users')
     .then(res => {
       console.log(res.data);
     })

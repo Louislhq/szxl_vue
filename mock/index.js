@@ -8,7 +8,7 @@ export default {
     init(){
         let mock = new MockAdapter(axios)
         mock.onGet('/users').reply(200,{
-            code: 1001,msg:"请求成功",Users
+            data:Users
         });
         mock.onGet('/goods').reply(config => {
             return new Promise((resolve, reject) => {

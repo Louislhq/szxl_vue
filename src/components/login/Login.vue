@@ -25,6 +25,15 @@ export default {
             }
         }
     },
+    created(){
+        this.$axios.get('/users')
+        .then(res => {
+            console.log(res.data.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    },
     methods:{
         submitForm(formName){
             console.log(this.$refs[formName])
