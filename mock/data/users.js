@@ -9,15 +9,20 @@ const Random = Mock.Random;
 //         desc: Random.cparagraph()
 //     }))
 // }
-var Users = Mock.mock({
-    // 'list|1-10': [{
-    //     'id|123.10': 1.123
-    // }]
-    name: {
-        first: '@email',
-        middle: '@FIRST',
-        last: '@LAST',
-        full: '@first @middle @last'
+const Users = [
+    {
+      id: 1,
+      username: 'admin',
+      password: '123456',
+      email: '123456@qq.com',
+      name: '搬砖者'
+    },
+    {
+      id: 2,
+      username: 'lytton',
+      password: '123456',
+      email: 'yyyyy@163.com',
+      name: '混子'
     }
-})
+  ]
 export {Users}
