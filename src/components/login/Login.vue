@@ -16,6 +16,7 @@
 
 <script>
 import md5 from 'js-md5'
+import {loginIn} from '@/api/login'
 
 export default {
     name:'login',
@@ -55,25 +56,25 @@ export default {
                         password: md5(this.account.password)
                     };
                     let loginUrl = this.HOST + '/login';
-                    this.$axios.post(loginUrl,loginParams).then(res => {
-                        this.logining = false;
+                    loginIn(loginParams).then(res => {
                         console.log(res);
-                        if (res.code == 0){
-                            this.$message.success({
-                                message: res.msg,
-                                showClose: true
-                            })
-                            sessionStorage.setItem('userName', res.data.username)
-                            sessionStorage.setItem('userToken', res.data.access_token)
-                            this.$store.dispatch('setUser', res.data)
-                            this.$store.dispatch('setToken', res.data.access_token)
-                            console.log(this.$store.state)
-                        }
-                        // let { code, msg, user } = res.data;
-                        // sessionStorage.setItem('user', JSON.stringify(user));
-                    }).catch(err => {
-                        console.log(err);
                     })
+                    // api.login(loginParams).then(res => {
+                    //     this.logining = false;
+                    //     if (res.code == 0){
+                    //         this.$message.success({
+                    //             message: res.msg,
+                    //             showClose: false
+                    //         })
+                    //         sessionStorage.setItem('userName', res.data.username)
+                    //         sessionStorage.setItem('userToken', res.data.access_token)
+                    //         this.$store.dispatch('setUser', res.data)
+                    //         this.$store.dispatch('setToken', res.data.access_token)
+                    //         this.$router.push({path:'/home'})
+                    //     }
+                    // }).catch(err => {
+                    //     console.log(err);
+                    // })
                 }else {
                     console.log('error submit');
                     return false;
