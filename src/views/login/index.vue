@@ -16,7 +16,7 @@
 
 <script>
 import md5 from 'js-md5'
-import {loginIn} from '@/api/login'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 
 export default {
     name:'login',
@@ -37,14 +37,12 @@ export default {
             logining: false
         }
     },
-    created(){
-        // this.$axios.get('/users')
-        // .then(res => {
-        //     console.log(res.data.data);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // })
+    watch: {
+        // $route: {
+        //     handler: function(route) {
+        //         console.log(route);
+        //     }
+        // }
     },
     methods:{
         submitForm(formName){
@@ -55,26 +53,12 @@ export default {
                         username: this.account.name,
                         password: md5(this.account.password)
                     };
-                    let loginUrl = this.HOST + '/login';
-                    loginIn(loginParams).then(res => {
-                        console.log(res);
+                    this.$store.dispatch('LoginByUsername', loginParams).then(() => {
+                        this.logining = false
+                        this.$router.push({path: '/home'})
+                    }).catch(err => {
+                        console.log(err)
                     })
-                    // api.login(loginParams).then(res => {
-                    //     this.logining = false;
-                    //     if (res.code == 0){
-                    //         this.$message.success({
-                    //             message: res.msg,
-                    //             showClose: false
-                    //         })
-                    //         sessionStorage.setItem('userName', res.data.username)
-                    //         sessionStorage.setItem('userToken', res.data.access_token)
-                    //         this.$store.dispatch('setUser', res.data)
-                    //         this.$store.dispatch('setToken', res.data.access_token)
-                    //         this.$router.push({path:'/home'})
-                    //     }
-                    // }).catch(err => {
-                    //     console.log(err);
-                    // })
                 }else {
                     console.log('error submit');
                     return false;
@@ -91,7 +75,7 @@ export default {
 <style scoped>
 .login{
     width: 500px;
-    margin: 0 auto;
+    margin: 200px auto 0;
     padding: 20px;
     border: 1px solid #e0e0e0;
     border-radius: 5px;

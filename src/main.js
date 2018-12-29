@@ -16,20 +16,17 @@ Vue.use(ElementUI);
 // import Mock from '../mock'
 // Mock.init()
 
-
-Vue.prototype.HOST = '/api'
-
-
 import store from './vuex/store'
+import './permission' 
 
 
 //设置title
-router.beforeEach((to, from, next) => {
-  if(to.meta.title){
-    document.title = to.meta.title
-  }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   if(to.meta.title){
+//     document.title = to.meta.title
+//   }
+//   next()
+// })
 
 
 Vue.config.devtools = true
