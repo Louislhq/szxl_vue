@@ -53,8 +53,21 @@ const user = {
         GetUserInfo({commit,state}) {
             return new Promise((resolve, reject) => {
                 getUserInfo(state.token).then(res => {
-                    console.log(res)
-                    resolve(res)
+                    const data = res.data
+                    if (data.code == '401') {
+                        reject('未登录')
+                    }
+                    if (Object.keys(data.data).length > 0) {
+                        commit('SET_USER', data.data.username)
+                        commit('SET_NAME', data.data.nickname)
+                        commit('SET_AVATAR', data.data.avatar)
+                        commit('SET_EMAIL', data.data.email)
+                        commit('SET_MOBILE', data.data.mobile)
+                        resolve(res)
+                    }
+                    
+                }).catch(err => {
+                    console.log(err)
                 })
             })
         }
