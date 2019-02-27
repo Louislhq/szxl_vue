@@ -12,6 +12,10 @@ export function loginIn(username,password){
     })
 }
 
+export function success(){
+    return request.get('/sucess')
+}
+
 export function getUserInfo(token) {
     return request({
         url: '/profile',

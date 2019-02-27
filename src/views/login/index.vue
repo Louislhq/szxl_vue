@@ -17,6 +17,7 @@
 <script>
 import md5 from 'js-md5'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import { loginIn, success, getUserInfo } from '@/api/login'
 
 export default {
     name:'login',
@@ -44,6 +45,11 @@ export default {
         //     }
         // }
     },
+    created(){
+        // success().then(res => {
+        //     console.log(res)
+        // })
+    },
     methods:{
         submitForm(formName){
             this.$refs[formName].validate((valid) => {
@@ -51,11 +57,12 @@ export default {
                     this.logining = true;
                     let loginParams = {
                         username: this.account.name,
-                        password: md5(this.account.password)
+                        password: this.account.password
+                        // password: md5(this.account.password)
                     };
                     this.$store.dispatch('LoginByUsername', loginParams).then(() => {
                         this.logining = false
-                        this.$router.push({path: '/home'})
+                        // this.$router.push({path: '/home'})
                     }).catch(err => {
                         console.log(err)
                     })

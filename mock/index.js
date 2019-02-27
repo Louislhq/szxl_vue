@@ -18,7 +18,7 @@ export default {
             msg: 'failure'
         })
 
-        mock.onPost('/user/login').reply(config => {
+        mock.onPost('/login').reply(config => {
             let {username, password} = JSON.parse(config.data);
             return new Promise((resolve, reject) => {
                 let user = null;
