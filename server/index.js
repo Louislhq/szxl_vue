@@ -1,15 +1,20 @@
 const express = require('express')
-const Mock = require('mockjs')
 const app = express()
-const router = express.Router()
+const mockjs = require('./router')
+const bodyparser = require('body-parser')
 
-router.get('/mockjs', (req,res) => {
-    var data = Mock.mock({
-        'list|1-10': [{
-            'id|+1': 1
-        }]
-    })
-    res.json(200,data)
-})
+app.use(bodyparser.urlencoded({
+    extended: false
+}))
+app.use(bodyparser.json())
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    next();
+});
+
+
+app.use('/api/', mockjs)
 
 app.listen(3000,()=> console.log('Example app listening on port 3000!'))

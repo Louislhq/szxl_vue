@@ -18,6 +18,7 @@
 import md5 from 'js-md5'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { loginIn, success, getUserInfo } from '@/api/login'
+import request from '@/utils/request'
 
 export default {
     name:'login',
@@ -46,9 +47,7 @@ export default {
         // }
     },
     created(){
-        // success().then(res => {
-        //     console.log(res)
-        // })
+
     },
     methods:{
         submitForm(formName){
@@ -62,8 +61,9 @@ export default {
                     };
                     this.$store.dispatch('LoginByUsername', loginParams).then(() => {
                         this.logining = false
-                        // this.$router.push({path: '/home'})
+                        this.$router.push({path: '/home'})
                     }).catch(err => {
+                        this.logining = false;
                         console.log(err)
                     })
                 }else {

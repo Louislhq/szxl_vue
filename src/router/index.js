@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import Login from '@/components/login/Login'
 
 const Login = resolve => require(['@/views/login/index'], resolve)
-const Home = resolve => require(['@/components/Home'], resolve)
+const Layout = resolve => require(['@/views/layout/Layout'], resolve)
 
 Vue.use(Router)
 
@@ -20,7 +20,7 @@ export default new Router({
     {
       path: '/home',
       name: 'Home',
-      component: Home,
+      component: Layout,
       meta: {
         title: '首页'
       }
