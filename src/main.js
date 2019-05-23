@@ -12,9 +12,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 
-//引入mock数据
-import Mock from '../mock'
-// Mock.init()
+import '@/styles/index.scss'
+
 
 
 import store from './vuex/store'

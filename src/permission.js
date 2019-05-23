@@ -11,9 +11,6 @@ router.beforeEach((to, from, next) => {
             next({ path: '/home'})
         }else{
             store.dispatch('GetUserInfo').then(res => {
-                // console.log(res)
-                // console.log(store.state)
-                // next({ ...to, replace: true })
                 next()
             }).catch(err => {
                 console.log(err)

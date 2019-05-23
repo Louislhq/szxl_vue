@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  BASE_API: '"http://127.0.0.1:3000/api"'
+  BASE_API: '"http://172.18.0.134:3000/mock/32/api"'
 }

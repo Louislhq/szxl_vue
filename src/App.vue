@@ -19,10 +19,5 @@ export default {
   color: #2c3e50;
   height: 100%;
 }
-html{
-  height: 100%;
-}
-body{
-  height: 100%;
-}
+
 </style>

@@ -1,14 +1,17 @@
 <template>
     <div class="app-wrapper">
+        <sidebar class="sidebar-container" />
     </div>
 </template>
 
+
 <script>
+import { Sidebar } from './components'
 
 export default {
     name: 'Home',
     components: {
-        
+        Sidebar
     }
 }
 </script>

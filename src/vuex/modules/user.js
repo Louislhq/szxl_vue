@@ -38,7 +38,7 @@ const user = {
 
                 loginIn(username, password).then(res => {
                     const data = res.data
-                    if(data.code == '0'){
+                    if(data.code == '200'){
                         commit('SET_TOKEN', data.data.access_token)
                         setToken(data.data.access_token)
                         resolve()
