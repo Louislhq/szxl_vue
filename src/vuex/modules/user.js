@@ -8,6 +8,7 @@ const user = {
         avatar: '',
         email: '',
         mobile: '',
+        roles: [],
         token: getToken()
     },
     mutations: {
@@ -28,6 +29,9 @@ const user = {
         },
         SET_TOKEN: (state,token) => {
             state.token = token
+        },
+        SET_ROLES: (state, roles) => {
+            state.roles = roles
         }
     },
     actions: {
@@ -55,6 +59,7 @@ const user = {
             return new Promise((resolve, reject) => {
                 getUserInfo(state.token).then(res => {
                     const data = res.data
+                    console.log(data);
                     if (data.code == '401') {
                         reject('未登录')
                     }
@@ -64,6 +69,7 @@ const user = {
                         commit('SET_AVATAR', data.data.avatar)
                         commit('SET_EMAIL', data.data.email)
                         commit('SET_MOBILE', data.data.mobile)
+                        commit('SET_ROLES', data.data.roles)
                         resolve(res)
                     }
                     

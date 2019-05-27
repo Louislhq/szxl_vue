@@ -54,3 +54,36 @@ export default new Router({
   scrollBehavior: () =>({ y: 0 }),
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/index',
+    alwaysShow: true,
+    meta: {
+      title: 'permission',
+      icon: 'lock',
+      roles: ['admin', 'editor']
+    },
+    children: [
+      {
+        path: 'page',
+        component:'',
+        name: 'PagePermission',
+        meta: {
+          title: 'pagePermission',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'directive',
+        component: '',
+        name: 'DirectivePermission',
+        meta: {
+          title: 'directivePermission'
+        }
+      }
+    ]
+  }
+]
