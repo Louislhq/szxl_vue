@@ -39,7 +39,6 @@ const user = {
             const username = userInfo.username.trim()
             const password = userInfo.password
             return new Promise((resolve, reject) => {
-
                 loginIn(username, password).then(res => {
                     const data = res.data
                     if(data.code == '200'){
@@ -59,7 +58,6 @@ const user = {
             return new Promise((resolve, reject) => {
                 getUserInfo(state.token).then(res => {
                     const data = res.data
-                    console.log(data);
                     if (data.code == '401') {
                         reject('未登录')
                     }

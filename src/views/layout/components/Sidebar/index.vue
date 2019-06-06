@@ -45,11 +45,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    data(){
-        return {
-
-        }
+    computed: {
+        ...mapGetters([
+            // 'permission_routers'
+        ])
     },
     methods: {
         handleOpen(key, keyPath) {

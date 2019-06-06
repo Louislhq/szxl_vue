@@ -10,11 +10,16 @@ router.beforeEach((to, from, next) => {
         if (to.path === '/login') {
             next({ path: '/home'})
         }else{
-            store.dispatch('GetUserInfo').then(res => {
-                next()
-            }).catch(err => {
-                console.log(err)
-            })
+            if (store.getters.roles.length === 0) {
+                store.dispatch('GetUserInfo').then(res => {
+                    const roles = res.data.data.roles
+                    store.dispatch('GenerateRoutes', { roles }).then(() => {
+                        next()
+                    })
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
         }
     } else {
         if ( whiteList.indexOf(to.path) !== -1) {

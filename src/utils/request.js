@@ -5,7 +5,7 @@ import qs from 'qs'
 // 创建 axios 实例
 const service = axios.create({
     // baseURL: '/api',
-    baseURL: process.env.BASE_API,
+    baseURL: 'http://172.18.0.158:3000/mock/32/api',
     timeout: 1000,
     headers: {'content-type': 'application/x-www-form-urlencoded'}
 })
