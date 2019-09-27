@@ -1,6 +1,13 @@
 <template>
     <div class="app-wrapper">
         <sidebar class="sidebar-container" />
+       <div class="main-container">
+        <section class="app-main">
+            <transition name="fade-transform" mode="out-in">
+                <router-view></router-view>
+            </transition>
+        </section>
+       </div>
     </div>
 </template>
 
@@ -13,7 +20,11 @@ export default {
     components: {
         Sidebar
     },
-    
+    computed: {
+        key(){
+            return this.$route.fullPath
+        }
+    }
 }
 </script>
 
@@ -25,5 +36,12 @@ export default {
     height: 100%;
     width: 100%;
     
+}
+.app-main {
+  /*84 = navbar + tags-view = 50 +34 */
+  min-height: calc(100vh - 84px);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 </style>

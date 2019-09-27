@@ -10,36 +10,24 @@
             @open="handleOpen"
             @close="handleClose"
         >
-            <el-submenu index="1">
-                <template slot="title">
-                <i class="el-icon-location"></i>
-                <span>导航一</span>
-                </template>
-                <el-menu-item-group>
-                <template slot="title">分组一</template>
-                <el-menu-item index="1-1">选项1</el-menu-item>
-                <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-             <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-            </el-menu-item>
-            <el-menu-item index="3">
-                <i class="el-icon-document"></i>
-                <span slot="title">导航三</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
+            <div v-for="(router, index) in permission_routers" :key="router.path">
+                <div v-if="!router.hidden && router.children">
+                    <el-submenu :index="index.toString()">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>{{router.meta.title}}</span>
+                        </template>
+                        <div v-for="(child, i ) in router.children" :key="child.path">
+                            <router-link :to="child.path" :key="child.name">
+                                <el-menu-item :index="index.toString()+'-'+i.toString()">{{child.meta.title}}</el-menu-item>
+                            </router-link>
+                        </div>
+                    </el-submenu>
+                </div>
+            </div>
+            <router-link :to="{path: '/permission/page'}">
+                <span>测试</span>
+            </router-link>
         </el-menu>
     </el-scrollbar>
 </template>
@@ -49,7 +37,7 @@ import { mapGetters } from 'vuex'
 export default {
     computed: {
         ...mapGetters([
-            // 'permission_routers'
+            'permission_routers'
         ])
     },
     methods: {
@@ -64,5 +52,10 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+    display: inline-block;
+    height: 40px;
+    color: rgb(191, 203, 217);
+    font-size: 18px;
+}
 </style>

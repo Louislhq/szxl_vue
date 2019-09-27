@@ -69,7 +69,7 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'page',
-        component:'',
+        component: () => import('@/views/permission/page'),
         name: 'PagePermission',
         meta: {
           title: 'pagePermission',
@@ -78,7 +78,7 @@ export const asyncRouterMap = [
       },
       {
         path: 'directive',
-        component: '',
+        component: () => import('@/views/permission/directive'),
         name: 'DirectivePermission',
         meta: {
           title: 'directivePermission'

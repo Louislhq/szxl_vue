@@ -7,7 +7,6 @@ const whiteList = ['/login']
 router.beforeEach((to, from, next) => {
 
     if (getToken()) {
-        
         if (to.path === '/login') {
             next({ path: '/home'})
         }else{
@@ -15,11 +14,17 @@ router.beforeEach((to, from, next) => {
                 store.dispatch('GetUserInfo').then(res => {
                     const roles = res.data.data.roles
                     store.dispatch('GenerateRoutes', { roles }).then(() => {
-                        next()
+                        router.addRoutes(store.getters.addRouters)
+                        
+                        next({ ...to, replace: true })
                     })
                 }).catch(err => {
                     console.log(err)
                 })
+            }else{
+                console.log(store.getters)
+                console.log(router.options.routes)
+                next()
             }
         }
     } else {

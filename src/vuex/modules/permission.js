@@ -29,6 +29,7 @@ function filterAsyncRouter(routes, roles) {
             res.push(tmp)
         }
     });
+    
     return res
 }
 
